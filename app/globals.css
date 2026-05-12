@@ -1,3 +1,137 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --ember: 255 90 31;
+  --iris: 124 92 255;
+  --lime: 199 255 61;
+  --ink: 11 11 16;
+  --bone: 244 239 230;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: rgb(var(--ink));
+  color: rgb(var(--bone));
+}
+
+body {
+  background-color: rgb(var(--ink));
+  color: rgb(var(--bone));
+  font-feature-settings: "ss01", "cv11";
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--ember));
+  color: rgb(var(--ink));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-on,
+  body.custom-cursor-on * {
+    cursor: none !important;
+  }
+}
+
+@layer base {
+  .font-display {
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      120deg,
+      #f4efe6 0%,
+      #ffb29a 25%,
+      #ff5a1f 50%,
+      #9f86ff 75%,
+      #f4efe6 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 9s ease infinite;
+  }
+
+  .ring-glow {
+    box-shadow:
+      0 0 0 1px rgba(244, 239, 230, 0.08),
+      0 30px 80px -20px rgba(124, 92, 255, 0.35),
+      0 8px 30px -8px rgba(255, 90, 31, 0.25);
+  }
+
+  .divider-thin {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(244, 239, 230, 0.18),
+      transparent
+    );
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
