@@ -80,7 +80,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="relative scroll-mt-24 overflow-hidden px-5 py-24 md:px-8 md:py-36 lg:px-12"
+      className="relative scroll-mt-24 px-5 py-24 md:px-8 md:py-36 lg:px-12"
     >
       <div
         aria-hidden

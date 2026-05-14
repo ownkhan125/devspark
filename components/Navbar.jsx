@@ -1,43 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
 
 const links = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Studio", href: "#philosophy" },
-  { label: "Voices", href: "#testimonials" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about-us" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(null);
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (v) => {
     setScrolled(v > 40);
   });
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const targets = links
-      .map((l) => document.querySelector(l.href))
-      .filter(Boolean);
-    if (targets.length === 0) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
-    );
-    targets.forEach((t) => obs.observe(t));
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
@@ -46,15 +36,13 @@ export default function Navbar() {
     };
   }, [open]);
 
-  const close = () => setOpen(false);
-
-  const onNavClick = (e, href) => {
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  useEffect(() => {
     setOpen(false);
+  }, [pathname]);
+
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   return (
@@ -67,7 +55,7 @@ export default function Navbar() {
       >
         <motion.nav
           animate={{
-            width: scrolled ? "min(96%, 920px)" : "min(100%, 1280px)",
+            width: scrolled ? "min(96%, 980px)" : "min(100%, 1280px)",
             backgroundColor: scrolled
               ? "rgba(19,18,27,0.7)"
               : "rgba(19,18,27,0)",
@@ -81,12 +69,11 @@ export default function Navbar() {
           className="relative flex w-full items-center justify-between gap-6 rounded-full border px-4 pl-5 backdrop-blur-xl md:px-6 md:pl-7"
           style={{ willChange: "width, padding" }}
         >
-          <a
-            href="#top"
-            onClick={(e) => onNavClick(e, "#top")}
+          <Link
+            href="/"
             data-cursor="link"
             className="group flex items-center gap-2 text-bone"
-            aria-label="Devspark, back to top"
+            aria-label="Devspark, back to home"
           >
             <span className="relative inline-flex h-8 w-8 items-center justify-center">
               <span className="absolute inset-0 rounded-full bg-gradient-to-br from-ember via-iris to-lime opacity-90 blur-[2px]" />
@@ -98,20 +85,19 @@ export default function Navbar() {
             <span className="hidden text-[15px] font-medium tracking-tight md:inline">
               Devspark<span className="text-ember">.</span>
             </span>
-          </a>
+          </Link>
 
-          <ul className="hidden items-center gap-1 md:flex">
-            {links.map((l) => {
-              const isActive = active === l.href;
+          <ul className="hidden items-center gap-0.5 md:flex">
+            {links.map((l, i) => {
+              const active = isActive(l.href);
               return (
                 <li key={l.href} className="relative">
-                  <a
+                  <Link
                     href={l.href}
                     data-cursor="link"
-                    onClick={(e) => onNavClick(e, l.href)}
-                    className="group relative inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium text-bone/70 transition-colors hover:text-bone"
+                    className="group relative inline-flex items-center rounded-full px-3.5 py-2 text-[13px] font-medium text-bone/70 transition-colors hover:text-bone"
                   >
-                    {isActive && (
+                    {active && (
                       <motion.span
                         layoutId="nav-pill"
                         className="absolute inset-0 -z-10 rounded-full bg-bone/10"
@@ -123,20 +109,19 @@ export default function Navbar() {
                       />
                     )}
                     <span className="mr-1.5 font-mono text-[10px] text-bone/40">
-                      0{links.indexOf(l) + 1}
+                      0{i + 1}
                     </span>
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
           </ul>
 
           <div className="hidden md:block">
-            <a
-              href="#contact"
+            <Link
+              href="/contact-us"
               data-cursor="cta"
-              onClick={(e) => onNavClick(e, "#contact")}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-bone px-5 py-2 text-[13px] font-medium text-ink transition-transform"
             >
               <span className="relative z-10">Start a project</span>
@@ -153,7 +138,7 @@ export default function Navbar() {
                 <path d="M8 7h9v9" />
               </svg>
               <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-ember/40 opacity-0 group-hover:opacity-100 group-hover:animate-shine" />
-            </a>
+            </Link>
           </div>
 
           <button
@@ -215,9 +200,8 @@ export default function Navbar() {
                       }}
                       className="border-b border-bone/10 py-3"
                     >
-                      <a
+                      <Link
                         href={l.href}
-                        onClick={(e) => onNavClick(e, l.href)}
                         className="flex items-baseline justify-between"
                       >
                         <span className="font-display text-4xl italic leading-none text-bone">
@@ -226,7 +210,7 @@ export default function Navbar() {
                         <span className="font-mono text-xs text-bone/40">
                           0{i + 1}
                         </span>
-                      </a>
+                      </Link>
                     </motion.li>
                   ))}
                 </ul>
@@ -236,14 +220,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.5,
-                    delay: 0.4,
+                    delay: 0.55,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="mt-auto"
                 >
-                  <a
-                    href="#contact"
-                    onClick={(e) => onNavClick(e, "#contact")}
+                  <Link
+                    href="/contact-us"
                     className="group flex items-center justify-between rounded-2xl bg-bone px-5 py-4 text-ink"
                   >
                     <span className="font-medium">Start a project</span>
@@ -259,7 +242,7 @@ export default function Navbar() {
                         <path d="M8 7h9v9" />
                       </svg>
                     </span>
-                  </a>
+                  </Link>
                   <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.2em] text-bone/40">
                     Available worldwide · Studio in Rawalpindi
                   </p>

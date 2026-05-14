@@ -1,5 +1,3 @@
-import Cursor from "@/components/Cursor";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Services from "@/components/sections/Services";
@@ -13,8 +11,6 @@ import Footer from "@/components/sections/Footer";
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-ink text-bone">
-      <Cursor />
-      <Navbar />
       <Hero />
       <Marquee />
       <Services />

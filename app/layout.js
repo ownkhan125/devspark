@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono, Inter_Tight } from "next/font/google";
 import "./globals.css";
+import Cursor from "@/components/Cursor";
+import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -32,7 +34,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${interTight.variable}`}
     >
-      <body className="font-sans antialiased bg-ink text-bone">{children}</body>
+      <body className="font-sans antialiased bg-ink text-bone">
+        <Cursor />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
