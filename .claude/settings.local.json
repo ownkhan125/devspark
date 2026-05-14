@@ -38,7 +38,8 @@
       "Bash(ls \"C:\\\\\\\\tmp\\\\\\\\\")",
       "Bash(taskkill //F //PID 9040)",
       "Bash(netstat -ano)",
-      "Bash(taskkill //F //PID 3100)"
+      "Bash(taskkill //F //PID 3100)",
+      "Bash(tail *)"
     ]
   }
 }
