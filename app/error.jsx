@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import Link from "next/link"
+import AnimatedGrid from "@/components/AnimatedGrid"
 
 const ErrorBoundary = ({ error, reset }) => {
   useEffect(() => {
@@ -14,10 +15,7 @@ const ErrorBoundary = ({ error, reset }) => {
         aria-hidden
         className="pointer-events-none absolute -right-32 -top-24 h-[420px] w-[420px] rounded-full bg-ember/30 blur-[140px] md:h-[560px] md:w-[560px]"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(244,239,230,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,239,230,0.04)_1px,transparent_1px)] bg-[size:60px_60px] mask-fade-y"
-      />
+      <AnimatedGrid />
 
       <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-start gap-6 px-5 md:px-8">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/40">

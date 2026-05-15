@@ -18,6 +18,7 @@ import {
 import SectionDivider from "@/components/SectionDivider";
 import SpotlightCard from "@/components/SpotlightCard";
 import MediaImage, { picsumSrc } from "@/components/MediaImage";
+import AnimatedGrid from "@/components/AnimatedGrid";
 
 function Cover({ post }) {
   const ref = useRef(null);
@@ -118,10 +119,7 @@ export default function BlogDetailClient({ post, related }) {
           transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
           className="pointer-events-none absolute -right-32 -top-24 h-[420px] w-[420px] rounded-full bg-iris/30 blur-[140px] md:h-[560px] md:w-[560px]"
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(244,239,230,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,239,230,0.04)_1px,transparent_1px)] bg-[size:60px_60px] mask-fade-y"
-        />
+        <AnimatedGrid />
 
         <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-6 px-5 sm:gap-8 md:px-8 lg:px-12">
           <motion.div

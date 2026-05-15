@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import MagneticButton from "@/components/MagneticButton";
 import { WordsReveal } from "@/components/Reveal";
+import AnimatedGrid from "@/components/AnimatedGrid";
 
 export default function CTA() {
   const ref = useRef(null);
@@ -34,10 +35,7 @@ export default function CTA() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-[36px] border border-bone/10 bg-ink-800/70 px-7 py-16 backdrop-blur md:px-16 md:py-24">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(244,239,230,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,239,230,0.05)_1px,transparent_1px)] bg-[size:48px_48px] mask-fade-y"
-          />
+          <AnimatedGrid spacing={48} opacity={0.06} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-bone/[0.04] via-transparent to-iris/[0.06]" />
 
           <div className="relative grid grid-cols-1 gap-12 md:grid-cols-12">

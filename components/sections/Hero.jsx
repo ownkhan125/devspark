@@ -10,6 +10,7 @@ import {
 import MagneticButton from "@/components/MagneticButton";
 import Counter from "@/components/Counter";
 import { WordsReveal } from "@/components/Reveal";
+import AnimatedGrid from "@/components/AnimatedGrid";
 
 const stats = [
   { to: 1800, suffix: "", label: "Projects shipped" },
@@ -95,10 +96,7 @@ export default function Hero() {
         className="absolute bottom-0 left-1/2 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-lime/20 blur-[120px]"
       />
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(244,239,230,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,239,230,0.04)_1px,transparent_1px)] bg-[size:60px_60px] mask-fade-y"
-      />
+      <AnimatedGrid />
 
       <motion.div
         style={{ opacity: op }}

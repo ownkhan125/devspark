@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
 import { WordsReveal } from "@/components/Reveal";
+import AnimatedGrid from "@/components/AnimatedGrid";
 
 export default function PageHero({
   kicker,
@@ -68,10 +69,7 @@ export default function PageHero({
         />
       </motion.div>
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(244,239,230,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(244,239,230,0.04)_1px,transparent_1px)] bg-[size:60px_60px] mask-fade-y"
-      />
+      <AnimatedGrid />
 
       <motion.div
         style={{ opacity: op }}
