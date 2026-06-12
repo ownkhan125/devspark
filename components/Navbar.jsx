@@ -14,6 +14,7 @@ const links = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
+  { label: "Social", href: "/social-media-posts" },
   { label: "About", href: "/about-us" },
   { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact-us" },
@@ -88,14 +89,14 @@ export default function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-0.5 md:flex">
-            {links.map((l, i) => {
+            {links.map((l) => {
               const active = isActive(l.href);
               return (
                 <li key={l.href} className="relative">
                   <Link
                     href={l.href}
                     data-cursor="link"
-                    className="group relative inline-flex items-center rounded-full px-3.5 py-2 text-[13px] font-medium text-bone/70 transition-colors hover:text-bone"
+                    className="group relative inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-medium text-bone/70 transition-colors hover:text-bone lg:px-3.5"
                   >
                     {active && (
                       <motion.span
@@ -108,9 +109,6 @@ export default function Navbar() {
                         }}
                       />
                     )}
-                    <span className="mr-1.5 font-mono text-[10px] text-bone/40">
-                      0{i + 1}
-                    </span>
                     {l.label}
                   </Link>
                 </li>
@@ -118,13 +116,13 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link
               href="/contact-us"
               data-cursor="cta"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-bone px-5 py-2 text-[13px] font-medium text-ink transition-transform"
+              className="group relative inline-flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-full bg-bone px-5 py-2 text-[13px] font-medium text-ink transition-transform"
             >
-              <span className="relative z-10">Start a project</span>
+              <span className="relative z-10 whitespace-nowrap">Start a project</span>
               <svg
                 viewBox="0 0 24 24"
                 className="relative z-10 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -207,9 +205,19 @@ export default function Navbar() {
                         <span className="font-display text-4xl italic leading-none text-bone">
                           {l.label}
                         </span>
-                        <span className="font-mono text-xs text-bone/40">
-                          0{i + 1}
-                        </span>
+                        <svg
+                          viewBox="0 0 24 24"
+                          className="h-4 w-4 text-bone/35"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M5 12h14" />
+                          <path d="M13 5l7 7-7 7" />
+                        </svg>
                       </Link>
                     </motion.li>
                   ))}

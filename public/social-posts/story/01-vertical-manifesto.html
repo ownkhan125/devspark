@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Story 01 · Vertical Manifesto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 30px;
+  }
+  .story {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+      radial-gradient(80% 40% at 30% 12%, rgba(124,92,255,0.35), transparent 60%),
+      radial-gradient(80% 40% at 80% 60%, rgba(255,90,31,0.30), transparent 60%),
+      radial-gradient(60% 30% at 20% 90%, rgba(199,255,61,0.15), transparent 60%),
+      linear-gradient(180deg, #0B0B10 0%, #13121B 50%, #0B0B10 100%);
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(244,239,230,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,239,230,0.04) 1px, transparent 1px);
+    background-size: 90px 90px;
+    mask-image: linear-gradient(180deg, transparent, black 15%, black 85%, transparent);
+  }
+
+  .frame-corners {
+    position: absolute;
+    inset: 64px;
+    border: 1px solid rgba(244,239,230,0.10);
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(244,239,230,0.5);
+  }
+  .corner.tl { left: -1px; top: -1px; border-right: none; border-bottom: none; }
+  .corner.tr { right: -1px; top: -1px; border-left: none; border-bottom: none; }
+  .corner.bl { left: -1px; bottom: -1px; border-right: none; border-top: none; }
+  .corner.br { right: -1px; bottom: -1px; border-left: none; border-top: none; }
+
+  .top {
+    position: absolute;
+    top: 110px;
+    left: 110px;
+    right: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.6);
+    z-index: 5;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(244,239,230,0.18);
+    background: rgba(11,11,16,0.45);
+    backdrop-filter: blur(8px);
+  }
+  .pill .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 16px var(--lime); position: relative; }
+
+  .stack {
+    position: absolute;
+    left: 110px;
+    right: 110px;
+    top: 260px;
+    z-index: 5;
+  }
+  .stack .row {
+    font-weight: 500;
+    font-size: 168px;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    text-wrap: balance;
+  }
+  .stack .row em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ember);
+    position: relative;
+  }
+  .stack .row em::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 8px;
+    height: 6px;
+    background: var(--ember);
+    transform: skewX(-12deg);
+    box-shadow: 0 0 26px rgba(255,90,31,0.7);
+    opacity: 0.85;
+  }
+  .stack .row.s {
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(244,239,230,0.6);
+    font-size: 120px;
+  }
+
+  .lede {
+    position: absolute;
+    left: 110px;
+    right: 380px;
+    bottom: 360px;
+    font-size: 26px;
+    line-height: 1.45;
+    color: rgba(244,239,230,0.75);
+    max-width: 540px;
+    z-index: 5;
+  }
+
+  .ledger {
+    position: absolute;
+    right: 110px;
+    bottom: 240px;
+    text-align: right;
+    z-index: 5;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    line-height: 2;
+  }
+  .ledger strong {
+    color: var(--bone);
+    font-weight: 500;
+  }
+
+  .cta-bar {
+    position: absolute;
+    left: 110px;
+    right: 110px;
+    bottom: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(244,239,230,0.15);
+    z-index: 5;
+  }
+  .cta-bar .url {
+    font-weight: 500;
+    font-size: 34px;
+    letter-spacing: -0.025em;
+  }
+  .cta-bar .arrow {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--ember);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 20px 40px rgba(255,90,31,0.5);
+  }
+  .cta-bar .arrow svg { width: 26px; height: 26px; }
+
+  /* Floating decorative shape */
+  .geo {
+    position: absolute;
+    right: -120px;
+    top: 1080px;
+    width: 360px;
+    height: 360px;
+    transform: rotate(20deg);
+    z-index: 3;
+  }
+  .geo .shape {
+    width: 100%;
+    height: 100%;
+    border-radius: 30%;
+    background: linear-gradient(135deg, rgba(124,92,255,0.85), rgba(255,90,31,0.85));
+    box-shadow:
+      inset 30px 30px 80px rgba(255,255,255,0.20),
+      inset -30px -30px 80px rgba(0,0,0,0.5),
+      0 40px 80px rgba(124,92,255,0.5);
+  }
+</style>
+</head>
+<body>
+  <div class="story grain">
+    <div class="grid-bg"></div>
+    <div class="frame-corners">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+    </div>
+
+    <div class="top">
+      <span class="pill"><span class="dot"></span>Available · Lorem MMXXVI</span>
+      <span>/ 01 — Story</span>
+    </div>
+
+    <div class="geo"><div class="shape"></div></div>
+
+    <div class="stack">
+      <div class="row">Lorem</div>
+      <div class="row s">ipsum</div>
+      <div class="row">dolor</div>
+      <div class="row"><em>sit amet.</em></div>
+    </div>
+
+    <p class="lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+
+    <div class="ledger">
+      <strong>Devspark Studio</strong>
+      / 01 of 10<br />
+      Field Notes<br />
+      MMXXVI · Vol. 01
+    </div>
+
+    <div class="cta-bar">
+      <span class="url">devspark.studio</span>
+      <span class="arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

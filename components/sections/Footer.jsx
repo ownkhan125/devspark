@@ -8,6 +8,7 @@ const studioLinks = [
   ["Home", "/"],
   ["Services", "/services"],
   ["Projects", "/projects"],
+  ["Social Media Posts", "/social-media-posts"],
   ["About", "/about-us"],
   ["Blogs", "/blogs"],
   ["Contact", "/contact-us"],

@@ -39,7 +39,15 @@
       "Bash(taskkill //F //PID 9040)",
       "Bash(netstat -ano)",
       "Bash(taskkill //F //PID 3100)",
-      "Bash(tail *)"
+      "Bash(tail *)",
+      "Bash(mkdir -p \"C:/Users/General/Documents/GitHub/devspark/campaign-social\")",
+      "Bash(mkdir -p \"C:/Users/General/Documents/GitHub/devspark/campaign-social/screenshots\")",
+      "Bash(cp \"C:/Users/General/Documents/GitHub/devspark/campaign-social/feed/\"*.html \"C:/Users/General/Documents/GitHub/devspark/public/social-posts/feed/\")",
+      "Bash(cp \"C:/Users/General/Documents/GitHub/devspark/campaign-social/story/\"*.html \"C:/Users/General/Documents/GitHub/devspark/public/social-posts/story/\")",
+      "Bash(taskkill /F /PID 22840)",
+      "Bash(tasklist)",
+      "Bash(cmd.exe //c \"taskkill /F /PID 22840\")",
+      "Bash(cmd.exe //c \"taskkill /F /IM node.exe\")"
     ]
   }
 }

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Social Campaign Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #06060a;
+    color: var(--bone);
+    font-family: "Inter Tight", system-ui, sans-serif;
+    padding: 80px 56px;
+    min-height: 100vh;
+  }
+  header {
+    max-width: 1600px;
+    margin: 0 auto 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(244,239,230,0.15);
+  }
+  header .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  header h1 em { font-style: italic; color: var(--ember); font-weight: 400; }
+  header .meta {
+    text-align: right;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+    line-height: 1.9;
+  }
+  header .meta strong { color: var(--bone); font-weight: 500; }
+
+  section { max-width: 1600px; margin: 0 auto 80px; }
+  section h2 {
+    font-weight: 500;
+    font-size: 38px;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+  }
+  section h2 em { font-style: italic; color: var(--ember); font-weight: 400; }
+  section h2 .small {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+  }
+
+  .feed-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(244,239,230,0.10);
+    background: rgba(11,11,16,0.6);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(244,239,230,0.35);
+    transform: translateY(-2px);
+  }
+  .card .thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+    background: #0a0913;
+  }
+  .story-grid .thumb { aspect-ratio: 1080 / 1920; }
+  .card iframe {
+    border: 0;
+    width: 1080px;
+    height: 1080px;
+    transform-origin: top left;
+    transform: scale(0.275);
+    pointer-events: none;
+  }
+  .story-grid .card iframe { width: 1080px; height: 1920px; transform: scale(0.275); }
+  .card .meta {
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.65);
+  }
+  .card .meta .n {
+    color: var(--ember);
+  }
+
+  footer {
+    max-width: 1600px;
+    margin: 60px auto 0;
+    padding-top: 30px;
+    border-top: 1px solid rgba(244,239,230,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="mono">/ Campaign · MMXXVI · Vol. 01</div>
+      <h1>Devspark <em>Social Series.</em></h1>
+    </div>
+    <div class="meta">
+      <strong>20 designs · 1 system</strong><br />
+      10 Feed · 10 Story<br />
+      1080×1080 · 1080×1920
+    </div>
+  </header>
+
+  <section>
+    <h2>Instagram Feed <em>/ 1080×1080</em> <span class="small">— 10 unique compositions</span></h2>
+    <div class="feed-grid">
+      <a class="card" href="feed/01-editorial-manifesto.html" target="_blank">
+        <div class="thumb"><iframe src="feed/01-editorial-manifesto.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/01</span><span>Editorial Manifesto</span></div>
+      </a>
+      <a class="card" href="feed/02-3d-prism.html" target="_blank">
+        <div class="thumb"><iframe src="feed/02-3d-prism.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/02</span><span>3D Prism</span></div>
+      </a>
+      <a class="card" href="feed/03-stats-editorial.html" target="_blank">
+        <div class="thumb"><iframe src="feed/03-stats-editorial.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/03</span><span>Stats Editorial</span></div>
+      </a>
+      <a class="card" href="feed/04-three-crafts-triptych.html" target="_blank">
+        <div class="thumb"><iframe src="feed/04-three-crafts-triptych.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/04</span><span>Triptych</span></div>
+      </a>
+      <a class="card" href="feed/05-browser-mockup.html" target="_blank">
+        <div class="thumb"><iframe src="feed/05-browser-mockup.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/05</span><span>Browser Mockup</span></div>
+      </a>
+      <a class="card" href="feed/06-iris-color-poster.html" target="_blank">
+        <div class="thumb"><iframe src="feed/06-iris-color-poster.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/06</span><span>Iris Poster</span></div>
+      </a>
+      <a class="card" href="feed/07-magazine-cover.html" target="_blank">
+        <div class="thumb"><iframe src="feed/07-magazine-cover.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/07</span><span>Magazine Cover</span></div>
+      </a>
+      <a class="card" href="feed/08-pull-quote.html" target="_blank">
+        <div class="thumb"><iframe src="feed/08-pull-quote.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/08</span><span>Pull Quote</span></div>
+      </a>
+      <a class="card" href="feed/09-spark-particle-burst.html" target="_blank">
+        <div class="thumb"><iframe src="feed/09-spark-particle-burst.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/09</span><span>Spark Burst</span></div>
+      </a>
+      <a class="card" href="feed/10-process-orbit.html" target="_blank">
+        <div class="thumb"><iframe src="feed/10-process-orbit.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/10</span><span>Process Orbit</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Instagram Story <em>/ 1080×1920</em> <span class="small">— 10 unique compositions</span></h2>
+    <div class="story-grid">
+      <a class="card" href="story/01-vertical-manifesto.html" target="_blank">
+        <div class="thumb"><iframe src="story/01-vertical-manifesto.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/01</span><span>Vertical Manifesto</span></div>
+      </a>
+      <a class="card" href="story/02-stat-tower.html" target="_blank">
+        <div class="thumb"><iframe src="story/02-stat-tower.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/02</span><span>Stat Tower</span></div>
+      </a>
+      <a class="card" href="story/03-phone-mockup.html" target="_blank">
+        <div class="thumb"><iframe src="story/03-phone-mockup.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/03</span><span>Phone Mockup</span></div>
+      </a>
+      <a class="card" href="story/04-ember-poster.html" target="_blank">
+        <div class="thumb"><iframe src="story/04-ember-poster.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/04</span><span>Ember Poster</span></div>
+      </a>
+      <a class="card" href="story/05-project-strip.html" target="_blank">
+        <div class="thumb"><iframe src="story/05-project-strip.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/05</span><span>Project Strip</span></div>
+      </a>
+      <a class="card" href="story/06-quote-editorial.html" target="_blank">
+        <div class="thumb"><iframe src="story/06-quote-editorial.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/06</span><span>Quote Editorial</span></div>
+      </a>
+      <a class="card" href="story/07-vertical-process.html" target="_blank">
+        <div class="thumb"><iframe src="story/07-vertical-process.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/07</span><span>Vertical Process</span></div>
+      </a>
+      <a class="card" href="story/08-service-spotlight.html" target="_blank">
+        <div class="thumb"><iframe src="story/08-service-spotlight.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/08</span><span>Service Spotlight</span></div>
+      </a>
+      <a class="card" href="story/09-available-cta.html" target="_blank">
+        <div class="thumb"><iframe src="story/09-available-cta.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/09</span><span>Available CTA</span></div>
+      </a>
+      <a class="card" href="story/10-signoff-monogram.html" target="_blank">
+        <div class="thumb"><iframe src="story/10-signoff-monogram.html" scrolling="no"></iframe></div>
+        <div class="meta"><span class="n">/10</span><span>Sign-off Monogram</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>devspark.studio · Social Series Vol. 01</span>
+    <span>20 of 20 · Complete</span>
+  </footer>
+</body>
+</html>

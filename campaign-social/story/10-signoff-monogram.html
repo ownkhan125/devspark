@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Story 10 · Sign-off Monogram</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 30px;
+  }
+  .story {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+      radial-gradient(70% 50% at 50% 40%, rgba(124,92,255,0.35), transparent 60%),
+      radial-gradient(80% 40% at 50% 100%, rgba(255,90,31,0.30), transparent 60%),
+      linear-gradient(180deg, #0B0B10 0%, #100E1A 50%, #050509 100%);
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+
+  .frame {
+    position: absolute;
+    inset: 80px;
+    border: 1px solid rgba(244,239,230,0.10);
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(244,239,230,0.55);
+  }
+  .corner.tl { left: -1px; top: -1px; border-right: none; border-bottom: none; }
+  .corner.tr { right: -1px; top: -1px; border-left: none; border-bottom: none; }
+  .corner.bl { left: -1px; bottom: -1px; border-right: none; border-top: none; }
+  .corner.br { right: -1px; bottom: -1px; border-left: none; border-top: none; }
+
+  .top-bar {
+    position: absolute;
+    top: 130px;
+    left: 130px;
+    right: 130px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    z-index: 5;
+  }
+
+  .center-stack {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 5;
+  }
+
+  .halo {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -30%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,255,0.5), transparent 65%);
+    filter: blur(60px);
+    z-index: -1;
+  }
+
+  .monogram {
+    margin: 0 auto;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,239,230,0.2);
+    background:
+      radial-gradient(circle at 35% 30%, rgba(244,239,230,0.10), rgba(11,11,16,0.6));
+    backdrop-filter: blur(20px);
+    display: grid;
+    place-items: center;
+    box-shadow:
+      inset 0 2px 0 rgba(255,255,255,0.18),
+      0 60px 100px rgba(124,92,255,0.55),
+      0 20px 50px rgba(255,90,31,0.30),
+      inset 0 0 60px rgba(124,92,255,0.20);
+    position: relative;
+  }
+  .monogram::after {
+    content: "";
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    border: 1px dashed rgba(244,239,230,0.15);
+  }
+  .monogram .mark {
+    font-weight: 500;
+    font-size: 180px;
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    color: var(--bone);
+  }
+  .monogram .mark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ember);
+  }
+
+  .url {
+    margin-top: 60px;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    font-size: 56px;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+  }
+  .url em {
+    font-style: italic;
+    color: var(--ember);
+    font-weight: 400;
+  }
+
+  .tagline {
+    margin-top: 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.7);
+  }
+
+  .contact-grid {
+    position: absolute;
+    bottom: 220px;
+    left: 130px;
+    right: 130px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    z-index: 5;
+  }
+  .col {
+    padding-top: 20px;
+    border-top: 1px solid rgba(244,239,230,0.20);
+  }
+  .col .l {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+  }
+  .col .v {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    line-height: 1.35;
+  }
+
+  .bottom-bar {
+    position: absolute;
+    bottom: 130px;
+    left: 130px;
+    right: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+    z-index: 5;
+  }
+  .swatch-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+  .swatch.e { background: var(--ember); box-shadow: 0 0 14px var(--ember); }
+  .swatch.i { background: var(--iris); box-shadow: 0 0 14px var(--iris); }
+  .swatch.l { background: var(--lime); box-shadow: 0 0 14px var(--lime); }
+  .swatch.b { background: var(--bone); box-shadow: 0 0 14px rgba(244,239,230,0.6); }
+</style>
+</head>
+<body>
+  <div class="story grain">
+    <div class="frame">
+      <span class="corner tl"></span>
+      <span class="corner tr"></span>
+      <span class="corner bl"></span>
+      <span class="corner br"></span>
+    </div>
+
+    <div class="top-bar">
+      <span>/ 10 — Sign-off · Series end</span>
+      <span>Devspark Studio · MMXXVI</span>
+    </div>
+
+    <div class="center-stack">
+      <div class="halo"></div>
+      <div class="monogram">
+        <span class="mark">DS<em>·</em></span>
+      </div>
+      <div class="url">devspark<em>.</em>studio</div>
+      <div class="tagline">Three crafts · One studio</div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="col">
+        <div class="l">/01 Contact</div>
+        <div class="v">hello@devspark.studio</div>
+      </div>
+      <div class="col">
+        <div class="l">/02 Studio</div>
+        <div class="v">Lorem ipsum<br />Dolor sit, Amet</div>
+      </div>
+      <div class="col">
+        <div class="l">/03 Social</div>
+        <div class="v">@devspark<br />/dribbble · /behance</div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <span>End of series · 10 / 10</span>
+      <span class="swatch-row">
+        <span class="swatch e"></span>
+        <span class="swatch i"></span>
+        <span class="swatch l"></span>
+        <span class="swatch b"></span>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

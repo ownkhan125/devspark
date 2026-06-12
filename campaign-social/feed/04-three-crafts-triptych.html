@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Feed 04 · Three Crafts Triptych</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 40px;
+  }
+  .post {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #0B0B10;
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 30;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+
+  .panels {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .panel {
+    position: relative;
+    overflow: hidden;
+    padding: 64px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    isolation: isolate;
+  }
+  .panel + .panel { border-left: 1px solid rgba(244,239,230,0.08); }
+  .panel .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .panel .glow {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    filter: blur(120px);
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  .p1 .bg { background: linear-gradient(180deg, rgba(255,90,31,0.18) 0%, transparent 60%, rgba(11,11,16,0.6) 100%); }
+  .p1 .glow { background: rgba(255,90,31,0.65); }
+
+  .p2 .bg { background: linear-gradient(180deg, rgba(124,92,255,0.20) 0%, transparent 60%, rgba(11,11,16,0.6) 100%); }
+  .p2 .glow { background: rgba(124,92,255,0.65); }
+
+  .p3 .bg { background: linear-gradient(180deg, rgba(199,255,61,0.18) 0%, transparent 60%, rgba(11,11,16,0.6) 100%); }
+  .p3 .glow { background: rgba(199,255,61,0.45); }
+
+  .panel .num {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    font-size: 180px;
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    color: var(--bone);
+    text-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .panel .num em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .object {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    z-index: 0;
+  }
+
+  /* Build: cube wireframe */
+  .build {
+    perspective: 800px;
+    transform-style: preserve-3d;
+  }
+  .build .cube {
+    width: 180px;
+    height: 180px;
+    margin: 20px auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-22deg) rotateY(34deg);
+  }
+  .build .cube .f {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid rgba(244,239,230,0.85);
+    background: rgba(255,90,31,0.10);
+    box-shadow: 0 0 30px rgba(255,90,31,0.3);
+  }
+  .build .cube .f.fr { transform: translateZ(90px); background: rgba(255,90,31,0.18); }
+  .build .cube .f.bk { transform: translateZ(-90px); }
+  .build .cube .f.rt { transform: rotateY(90deg) translateZ(90px); }
+  .build .cube .f.lt { transform: rotateY(-90deg) translateZ(90px); }
+  .build .cube .f.tp { transform: rotateX(90deg) translateZ(90px); }
+  .build .cube .f.bt { transform: rotateX(-90deg) translateZ(90px); }
+
+  /* Design: nested circles */
+  .design svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 20px 60px rgba(124,92,255,0.5));
+  }
+
+  /* Identity: spark */
+  .identity svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 20px 60px rgba(199,255,61,0.45));
+  }
+
+  .panel .footer {
+    position: relative;
+    z-index: 2;
+  }
+  .panel .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    margin-bottom: 12px;
+  }
+  .panel .title {
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 12px;
+  }
+  .panel .title em { font-style: italic; font-weight: 400; }
+  .p1 .title em { color: var(--ember); }
+  .p2 .title em { color: var(--iris); }
+  .p3 .title em { color: var(--lime); }
+  .panel .desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(244,239,230,0.65);
+    max-width: 220px;
+  }
+
+  .ticker {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(244,239,230,0.10);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.6);
+    background: rgba(11,11,16,0.85);
+    backdrop-filter: blur(10px);
+    z-index: 20;
+  }
+  .ticker .center em {
+    font-style: italic;
+    color: var(--ember);
+  }
+</style>
+</head>
+<body>
+  <div class="post grain">
+    <div class="panels">
+      <div class="panel p1">
+        <div class="bg"></div>
+        <div class="glow"></div>
+        <div class="num">01</div>
+        <div class="object build">
+          <div class="cube">
+            <div class="f bk"></div>
+            <div class="f lt"></div>
+            <div class="f rt"></div>
+            <div class="f tp"></div>
+            <div class="f bt"></div>
+            <div class="f fr"></div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="tag">/ Build</div>
+          <div class="title">Web & <em>product</em></div>
+          <div class="desc">Lorem ipsum dolor sit amet consectetur adipiscing elit.</div>
+        </div>
+      </div>
+
+      <div class="panel p2">
+        <div class="bg"></div>
+        <div class="glow"></div>
+        <div class="num">02</div>
+        <div class="object design">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#F4EFE6" stroke-width="1.5" opacity="0.4"/>
+            <circle cx="100" cy="100" r="58" fill="none" stroke="#F4EFE6" stroke-width="1.5" opacity="0.6"/>
+            <circle cx="100" cy="100" r="36" fill="rgba(124,92,255,0.15)" stroke="#F4EFE6" stroke-width="1.5" opacity="0.85"/>
+            <circle cx="100" cy="100" r="14" fill="#7C5CFF"/>
+            <line x1="20" y1="100" x2="180" y2="100" stroke="#F4EFE6" stroke-width="0.6" opacity="0.3" stroke-dasharray="2 4"/>
+            <line x1="100" y1="20" x2="100" y2="180" stroke="#F4EFE6" stroke-width="0.6" opacity="0.3" stroke-dasharray="2 4"/>
+          </svg>
+        </div>
+        <div class="footer">
+          <div class="tag">/ Design</div>
+          <div class="title">UI · UX <em>systems</em></div>
+          <div class="desc">Sed do eiusmod tempor incididunt ut labore et dolore magna.</div>
+        </div>
+      </div>
+
+      <div class="panel p3">
+        <div class="bg"></div>
+        <div class="glow"></div>
+        <div class="num">03</div>
+        <div class="object identity">
+          <svg viewBox="0 0 200 200">
+            <g transform="translate(100,100)">
+              <path d="M0,-90 L20,-20 L90,0 L20,20 L0,90 L-20,20 L-90,0 L-20,-20 Z" fill="rgba(199,255,61,0.20)" stroke="#F4EFE6" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="10" fill="#C7FF3D"/>
+              <circle cx="0" cy="0" r="40" fill="none" stroke="#F4EFE6" stroke-width="0.8" opacity="0.4"/>
+            </g>
+          </svg>
+        </div>
+        <div class="footer">
+          <div class="tag">/ Identity</div>
+          <div class="title">Brand & <em>graphic</em></div>
+          <div class="desc">Ut enim ad minim veniam quis nostrud exercitation ullamco.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ticker">
+      <span>devspark.studio</span>
+      <span class="center">Three crafts · <em>One studio.</em></span>
+      <span>/ 04 — Triptych</span>
+    </div>
+  </div>
+</body>
+</html>

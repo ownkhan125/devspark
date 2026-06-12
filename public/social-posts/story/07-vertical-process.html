@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Story 07 · Vertical Process</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 30px;
+  }
+  .story {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+      radial-gradient(60% 30% at 80% 30%, rgba(255,90,31,0.20), transparent 60%),
+      radial-gradient(60% 40% at 20% 70%, rgba(124,92,255,0.20), transparent 60%),
+      linear-gradient(180deg, #0B0B10 0%, #13121B 100%);
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(244,239,230,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,239,230,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+  }
+
+  .top {
+    position: absolute;
+    top: 110px;
+    left: 100px;
+    right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    z-index: 10;
+  }
+
+  .title {
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    right: 100px;
+    z-index: 10;
+  }
+  .title .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    margin-bottom: 18px;
+  }
+  .title h2 {
+    font-weight: 500;
+    font-size: 110px;
+    line-height: 0.94;
+    letter-spacing: -0.05em;
+  }
+  .title h2 em { font-style: italic; font-weight: 400; color: var(--ember); }
+
+  .timeline {
+    position: absolute;
+    top: 580px;
+    bottom: 280px;
+    left: 100px;
+    right: 100px;
+    z-index: 5;
+  }
+  .timeline .rail {
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(244,239,230,0.3), transparent);
+  }
+  .step {
+    position: relative;
+    padding-left: 130px;
+    margin-bottom: 56px;
+  }
+  .step .node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 102px;
+    height: 102px;
+    border-radius: 50%;
+    border: 1px solid rgba(244,239,230,0.25);
+    background: rgba(11,11,16,0.6);
+    backdrop-filter: blur(8px);
+    display: grid;
+    place-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px;
+    letter-spacing: 0.18em;
+    color: var(--bone);
+  }
+  .step.s1 .node { color: var(--ember); border-color: var(--ember); box-shadow: 0 0 0 8px rgba(255,90,31,0.18), 0 20px 50px rgba(255,90,31,0.35); }
+  .step.s2 .node { color: var(--iris); border-color: var(--iris); box-shadow: 0 0 0 8px rgba(124,92,255,0.18), 0 20px 50px rgba(124,92,255,0.35); }
+  .step.s3 .node { color: var(--lime); border-color: var(--lime); box-shadow: 0 0 0 8px rgba(199,255,61,0.18), 0 20px 50px rgba(199,255,61,0.35); }
+  .step.s4 .node { color: var(--bone); border-color: var(--bone); box-shadow: 0 0 0 8px rgba(244,239,230,0.10), 0 20px 50px rgba(244,239,230,0.18); }
+
+  .step .tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+  }
+  .step h3 {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+  .step h3 em { font-style: italic; font-weight: 400; }
+  .step.s1 h3 em { color: var(--ember); }
+  .step.s2 h3 em { color: var(--iris); }
+  .step.s3 h3 em { color: var(--lime); }
+  .step.s4 h3 em { color: var(--bone); }
+  .step p {
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.45;
+    color: rgba(244,239,230,0.65);
+    max-width: 600px;
+  }
+
+  .bottom {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    bottom: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(244,239,230,0.15);
+    z-index: 10;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+  }
+  .bottom .l {
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    text-transform: none;
+  }
+</style>
+</head>
+<body>
+  <div class="story grain">
+    <div class="grid-bg"></div>
+
+    <div class="top">
+      <span>/ 07 — One-week sprint</span>
+      <span>Story 07</span>
+    </div>
+
+    <div class="title">
+      <div class="mono">/07 — Process</div>
+      <h2>Four phases.<br /><em>One cycle.</em></h2>
+    </div>
+
+    <div class="timeline">
+      <div class="rail"></div>
+      <div class="step s1">
+        <div class="node">01</div>
+        <div class="tag">/ Discover · Mon–Tue</div>
+        <h3>Lorem <em>ipsum</em></h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+      </div>
+      <div class="step s2">
+        <div class="node">02</div>
+        <div class="tag">/ Design · Wed</div>
+        <h3>Dolor <em>sit amet</em></h3>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      </div>
+      <div class="step s3">
+        <div class="node">03</div>
+        <div class="tag">/ Develop · Thu</div>
+        <h3>Consectetur <em>adipiscing</em></h3>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+      </div>
+      <div class="step s4">
+        <div class="node">04</div>
+        <div class="tag">/ Deploy · Fri</div>
+        <h3>Sed do <em>eiusmod</em></h3>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui.</p>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span class="l">devspark.studio</span>
+      <span>07 / 10 · Process</span>
+    </div>
+  </div>
+</body>
+</html>

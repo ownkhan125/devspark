@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Feed 09 · Spark Particle Burst</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 40px;
+  }
+  .post {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+      radial-gradient(55% 55% at 50% 50%, rgba(255,90,31,0.28) 0%, rgba(124,92,255,0.18) 40%, transparent 75%),
+      linear-gradient(160deg, #14091a 0%, #08080d 60%, #030305 100%);
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+
+  .nebula {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 820px;
+    height: 820px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,90,31,0.42) 0%, rgba(124,92,255,0.28) 35%, transparent 70%);
+    filter: blur(70px);
+  }
+  .nebula-2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 260px;
+    height: 260px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,160,110,0.55), rgba(255,90,31,0.30) 55%, transparent 78%);
+    filter: blur(50px);
+  }
+  .core-darken {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 720px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(11,11,16,0.55) 0%, rgba(11,11,16,0.25) 45%, transparent 75%);
+    filter: blur(50px);
+    z-index: 3;
+  }
+
+  .ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(244,239,230,0.10);
+    pointer-events: none;
+  }
+  .ring.r1 { width: 420px; height: 420px; border-style: dashed; opacity: 0.4; }
+  .ring.r2 { width: 600px; height: 600px; opacity: 0.5; }
+  .ring.r3 { width: 820px; height: 820px; border-style: dashed; opacity: 0.3; }
+  .ring.r4 { width: 1020px; height: 1020px; opacity: 0.2; }
+
+  .spark-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    line-height: 1;
+  }
+  .spark-shadow {
+    position: absolute;
+    inset: 0;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 280px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #050509;
+    transform: translate(0, 6px);
+    filter: blur(2px);
+    opacity: 0.85;
+  }
+  .spark {
+    position: relative;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 280px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    background: linear-gradient(180deg, #F4EFE6 0%, #FFC6A8 35%, #FF5A1F 70%, #B23D0F 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 40px 60px rgba(11,11,16,0.65));
+  }
+  .spark-halo {
+    position: absolute;
+    inset: 0;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 280px;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(255,90,31,0.45);
+    filter: blur(36px);
+    z-index: -1;
+  }
+
+  /* Particle dots all around */
+  .particles {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .particles i {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 16px currentColor;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 64px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.85);
+    z-index: 10;
+    text-shadow: 0 2px 12px rgba(11,11,16,0.85);
+  }
+  .top-bar .right { color: rgba(244,239,230,0.65); }
+
+  .corner-mark {
+    position: absolute;
+    bottom: 64px;
+    z-index: 10;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.78);
+    line-height: 1.65;
+    text-shadow: 0 2px 14px rgba(11,11,16,0.85);
+  }
+  .corner-mark.l { left: 64px; }
+  .corner-mark.r { right: 64px; text-align: right; }
+  .corner-mark strong {
+    color: var(--bone);
+    font-weight: 500;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 6px;
+    letter-spacing: 0.18em;
+  }
+
+  .axis {
+    position: absolute;
+    background: rgba(244,239,230,0.07);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .axis.h { left: 0; right: 0; top: 50%; height: 1px; }
+  .axis.v { top: 0; bottom: 0; left: 50%; width: 1px; }
+
+  .crosshair {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    z-index: 2;
+    opacity: 0.5;
+  }
+  .crosshair::before, .crosshair::after {
+    content: "";
+    position: absolute;
+    background: rgba(244,239,230,0.4);
+  }
+  .crosshair::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+  .crosshair::after { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+</style>
+</head>
+<body>
+  <div class="post grain">
+    <div class="axis h"></div>
+    <div class="axis v"></div>
+
+    <div class="ring r4"></div>
+    <div class="ring r3"></div>
+    <div class="ring r2"></div>
+    <div class="ring r1"></div>
+
+    <div class="nebula"></div>
+    <div class="nebula-2"></div>
+
+    <div class="particles">
+      <!-- ember -->
+      <i style="left:18%; top:22%; width:8px; height:8px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:78%; top:18%; width:5px; height:5px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:14%; top:78%; width:10px; height:10px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:86%; top:74%; width:6px; height:6px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:48%; top:14%; width:4px; height:4px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:88%; top:46%; width:7px; height:7px; color:#FF5A1F; background:#FF5A1F"></i>
+      <i style="left:10%; top:48%; width:5px; height:5px; color:#FF5A1F; background:#FF5A1F"></i>
+      <!-- iris -->
+      <i style="left:24%; top:32%; width:6px; height:6px; color:#7C5CFF; background:#7C5CFF"></i>
+      <i style="left:72%; top:36%; width:8px; height:8px; color:#7C5CFF; background:#7C5CFF"></i>
+      <i style="left:62%; top:78%; width:7px; height:7px; color:#7C5CFF; background:#7C5CFF"></i>
+      <i style="left:34%; top:72%; width:5px; height:5px; color:#7C5CFF; background:#7C5CFF"></i>
+      <i style="left:80%; top:60%; width:4px; height:4px; color:#7C5CFF; background:#7C5CFF"></i>
+      <!-- lime -->
+      <i style="left:42%; top:28%; width:6px; height:6px; color:#C7FF3D; background:#C7FF3D"></i>
+      <i style="left:58%; top:18%; width:4px; height:4px; color:#C7FF3D; background:#C7FF3D"></i>
+      <i style="left:30%; top:84%; width:5px; height:5px; color:#C7FF3D; background:#C7FF3D"></i>
+      <i style="left:68%; top:88%; width:7px; height:7px; color:#C7FF3D; background:#C7FF3D"></i>
+      <!-- bone -->
+      <i style="left:20%; top:60%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+      <i style="left:82%; top:30%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+      <i style="left:50%; top:88%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+      <i style="left:50%; top:8%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+      <i style="left:8%; top:34%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+      <i style="left:90%; top:84%; width:3px; height:3px; color:#F4EFE6; background:#F4EFE6"></i>
+    </div>
+
+    <div class="core-darken"></div>
+    <div class="crosshair"></div>
+
+    <div class="spark-wrap">
+      <span class="spark-halo">spark.</span>
+      <span class="spark-shadow">spark.</span>
+      <span class="spark">spark.</span>
+    </div>
+
+    <div class="top-bar">
+      <span>/ 09 — Ignition</span>
+      <span class="right">X: 540 · Y: 540 · Z: ∞</span>
+    </div>
+
+    <div class="corner-mark l">
+      <strong>Lorem ipsum.</strong>
+      Dolor sit amet, consectetur<br />adipiscing elit sed do eiusmod.
+    </div>
+    <div class="corner-mark r">
+      <strong>09 / 10</strong>
+      Devspark.studio · MMXXVI
+    </div>
+  </div>
+</body>
+</html>

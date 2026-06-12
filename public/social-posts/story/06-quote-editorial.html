@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Devspark · Story 06 · Quote Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0B0B10;
+    --bone: #F4EFE6;
+    --ember: #FF5A1F;
+    --iris: #7C5CFF;
+    --lime: #C7FF3D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06060a; }
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: "Inter Tight", sans-serif;
+    color: var(--bone);
+    padding: 30px;
+  }
+  .story {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    border-radius: 8px;
+    background:
+      radial-gradient(60% 30% at 80% 10%, rgba(159,134,255,0.5), transparent 60%),
+      radial-gradient(60% 40% at 20% 80%, rgba(255,90,31,0.30), transparent 60%),
+      linear-gradient(180deg, #0B0B10 0%, #100F1A 50%, #0B0B10 100%);
+    box-shadow: 0 80px 200px -40px rgba(0,0,0,0.8);
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/></svg>");
+  }
+
+  .top {
+    position: absolute;
+    top: 110px;
+    left: 100px;
+    right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    z-index: 10;
+  }
+
+  .open {
+    position: absolute;
+    left: 60px;
+    top: 240px;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 720px;
+    line-height: 1;
+    color: rgba(255,90,31,0.18);
+    z-index: 2;
+    letter-spacing: -0.07em;
+    user-select: none;
+  }
+
+  .quote {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    top: 580px;
+    z-index: 5;
+  }
+  .quote .lead {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    margin-bottom: 36px;
+  }
+  .quote .q {
+    font-weight: 500;
+    font-size: 120px;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+  .quote .q em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ember);
+  }
+  .quote .underline {
+    display: inline-block;
+    position: relative;
+  }
+  .quote .underline::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 8px;
+    height: 6px;
+    background: var(--ember);
+    transform: skewX(-12deg);
+    opacity: 0.85;
+    box-shadow: 0 0 26px rgba(255,90,31,0.7);
+  }
+
+  .attribution {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    bottom: 290px;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding-top: 36px;
+    border-top: 1px solid rgba(244,239,230,0.20);
+  }
+  .avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 35%, #d9c4ff, #7C5CFF 50%, #2B1F70 100%);
+    box-shadow:
+      inset -15px -20px 40px rgba(0,0,0,0.5),
+      inset 10px 14px 24px rgba(255,255,255,0.2),
+      0 20px 50px rgba(124,92,255,0.4);
+    border: 2px solid rgba(244,239,230,0.25);
+  }
+  .attribution .info {
+    min-width: 0;
+  }
+  .attribution .info .name {
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: -0.025em;
+    color: var(--bone);
+  }
+  .attribution .info .role {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    margin-top: 8px;
+  }
+  .attribution .index {
+    text-align: right;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.55);
+    line-height: 1.8;
+  }
+  .attribution .index strong { color: var(--bone); font-weight: 500; }
+
+  .bottom {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    bottom: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,230,0.5);
+    z-index: 10;
+  }
+  .bottom em { font-style: italic; color: var(--ember); }
+</style>
+</head>
+<body>
+  <div class="story grain">
+    <div class="open">"</div>
+
+    <div class="top">
+      <span>/ 06 — Voices · Story 06</span>
+      <span>MMXXVI</span>
+    </div>
+
+    <div class="quote">
+      <div class="lead">/06 — Testimonial</div>
+      <p class="q">Lorem ipsum dolor sit amet, <em>consectetur</em> adipiscing elit sed eiusmod <span class="underline">tempor</span>.</p>
+    </div>
+
+    <div class="attribution">
+      <div class="avatar"></div>
+      <div class="info">
+        <div class="name">Lorem Ipsum</div>
+        <div class="role">Dolor Sit · Amet & Co.</div>
+      </div>
+      <div class="index">
+        <strong>06 / 10</strong>
+        Devspark · Voices
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>devspark.studio</span>
+      <span><em>·</em> Three crafts. One studio.</span>
+    </div>
+  </div>
+</body>
+</html>
